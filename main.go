@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
+	"runtime/trace"
 	"strings"
 
 	"github.com/doodlescheduling/flux-build/internal/action"
@@ -87,6 +88,19 @@ func main() {
 		}
 		pprof.StartCPUProfile(f)
 		defer pprof.StopCPUProfile()
+
+		// Create a trace output file
+		traceFile, err := os.Create(*cpuprofile + ".trace")
+		if err != nil {
+			log.Fatalf("Failed to create trace file: %v", err)
+		}
+		defer traceFile.Close()
+
+		// Start tracing
+		if err := trace.Start(traceFile); err != nil {
+			log.Fatalf("Failed to start trace: %v", err)
+		}
+		defer trace.Stop()
 	}
 
 	if config.Workers < 1 {
