@@ -308,3 +308,5 @@ require (
 	sigs.k8s.io/release-utils v0.8.4 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 )
+
+replace github.com/docker/docker => github.com/yorik/moby master
