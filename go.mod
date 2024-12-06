@@ -309,4 +309,4 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 )
 
-replace github.com/docker/docker => github.com/yorik/moby master
+replace github.com/docker/docker => github.com/yorik/moby v0.0.0-20241206175512-b7a3662d1716
